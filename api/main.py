@@ -19,8 +19,6 @@ if not w3.is_connected():
 else: 
     app.logger.info(w3.is_connected())
 
-
-API_KEY = ""
     
 # Define a route for the API endpoint
 # Endpoint to create a new guide

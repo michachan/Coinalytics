@@ -11,7 +11,7 @@ export default function User({ params }: { params: { userId: string } }) {
         </VStack>
       </VStack>
       <HStack w="100%" maxW={MAX_PAGE_WIDTH} align="flex-start">
-        <VStack flex="0 0 325px" gap={2}>
+        <VStack flex="0 0 300px" gap={2}>
           <Card bg="red" w="100%" borderRadius={2}>
             left
           </Card>
