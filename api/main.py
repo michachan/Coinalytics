@@ -1,3 +1,4 @@
+from typing import Counter
 from flask import Flask, request, jsonify
 # Setup
 from web3 import Web3
@@ -133,21 +134,34 @@ def get_user_tokens(user_address):
 # 0xbebe81ee5dc2625535d781f8fbb9c04c1128d1a2
 # 0xf25b3fa015f33c9d8d760069091150709516004a
 
-# Wormhole Token" 
-
+# Wormhole Token
     response = requests.get(alc_url, params=params)
     if response.status_code == 200:
         big_response = response.json()
 
+        nft_counter = Counter(
+        (nft['contract']['name'], nft['tokenType']) for nft in big_response["ownedNfts"]
+        )
+
+  
+
+        # Get the top 3 most common NFTs
+        top_three_nfts = nft_counter.most_common(3)
+
+    # Filter and format the response to include only the top 3 NFTs
         response = {
-        "nft_details": [
-            {
-                "description": nft.get("description", "No description available."),
-                "imageUrl": nft["image"].get("originalUrl", "No image available."),
-                "tokenType": nft["tokenType"],
-            } for nft in big_response["ownedNfts"]
-        ]
-    }
+            "nft_details": [
+                {
+                    "name": name,
+                    "tokenType": token_type,
+                    "frequency": count,
+                    "details": next(({
+                        "imageUrl": nft["image"].get("originalUrl", "No image available."),
+                        "description": nft.get("description", "No description provided.")
+                    } for nft in big_response["ownedNfts"] if nft['contract']['name'] == name and nft['tokenType'] == token_type), None)
+                } for (name, token_type), count in top_three_nfts
+            ]
+        }
         return jsonify({'status': 'success', 'data': response}), 200
             
     else:
