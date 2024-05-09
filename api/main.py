@@ -3,12 +3,14 @@ from flask import Flask, request, jsonify
 from web3 import Web3
 from flask_cors import CORS
 import requests
+import os
+from dotenv import load_dotenv
 
 # Initialize the Flask application
 app = Flask(__name__)
 CORS(app)
-
-
+# Load environment variables from .env file
+load_dotenv()
 
 alchemy_url = "https://base-mainnet.g.alchemy.com/v2/rje5YPS0qS-jeo92fZ4QUJshpVXzlNua"
 w3 = Web3(Web3.HTTPProvider(alchemy_url))
@@ -53,13 +55,12 @@ def get_transactions(user_address):
         "startblock": start_block,
         "endblock": end_block,
         "sort": sort,
-        "apikey": API_KEY
+        "apikey": os.getenv('API_KEY')
     }
 
     resp = requests.get(url, params=params)
     
     if resp.status_code == 200:
-        response_array = []
         transactions = resp.json()
         #print("Response: ", str(transactions))
         data = transactions['result']
