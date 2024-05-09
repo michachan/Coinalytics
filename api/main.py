@@ -69,7 +69,7 @@ def get_transactions(user_address):
             'gas': tx['gas'],
             'gasPrice': tx['gasPrice'],
             'gasUsed': tx['gasUsed'],
-            'functionName': tx['functionName'],
+            'functionName': 'Buy' if tx['functionName'] == "" else tx['functionName'],
             }
             response['transactions'].append(transact)
             uniqueAddressesInteractedWith = set()
