@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
 # Setup
 from web3 import Web3
+from flask_cors import CORS
 import requests
 
 # Initialize the Flask application
 app = Flask(__name__)
+CORS(app)
+
 
 
 alchemy_url = "https://base-mainnet.g.alchemy.com/v2/rje5YPS0qS-jeo92fZ4QUJshpVXzlNua"
