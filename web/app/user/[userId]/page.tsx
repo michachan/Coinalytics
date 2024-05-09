@@ -132,9 +132,15 @@ export default async function User({ params }: { params: { userId: string } }) {
                   <Text
                     fontWeight="bold"
                     textTransform="capitalize"
-                    color={type === "buy" ? "red.300" : "green.100"}
+                    color={
+                      type === "buy"
+                        ? "red.100"
+                        : type === "sell"
+                        ? "green.100"
+                        : "blue.200"
+                    }
                   >
-                    {type}
+                    {type || "Unknown"}
                   </Text>
                   <Box>{transaction.gas}</Box>
                   <HStack flex={1} justify="space-between" align="flex-start">
