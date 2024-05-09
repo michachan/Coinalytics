@@ -25,7 +25,8 @@ export default function Home() {
 
   useEffect(() => {
     const inputElement = inputRef.current;
-    if (inputElement) inputElement.value = "Ronald-McDonald";
+    if (inputElement)
+      inputElement.value = "0x2b31dde7a5224ccc509d83387c2072218e30dd18";
   }, []);
 
   return (
