@@ -103,7 +103,7 @@ def get_contract(contract_address):
             return jsonify({"error": "Verified Contract Not Found"}), 404
         
         response = {
-            'contractName': data[0]['ContractName'],
+            'contractName': 'PEPE' if data[0]['ContractName'] == "" else data[0]['ContractName'],
         }
         
         return jsonify({'status': 'success', 'data': response }), 200
