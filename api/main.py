@@ -45,7 +45,7 @@ def get_transactions(user_address):
     sort = "asc"
     
     end_block = w3.eth.block_number
-    start_block = max(0, end_block - 100000)
+    start_block = max(0, end_block - 1000000)
     # Get a list of normal transactions by Address (BaseScan API)
     url = "https://api.basescan.org/api"
     params = {
