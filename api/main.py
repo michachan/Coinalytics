@@ -34,7 +34,7 @@ def get_block():
     return (str(latest_block["baseFeePerGas"]))
 
 # Tracks all transactions made by a specific user address. This endpoint can provide insights into user activity patterns, transaction types, and frequencies.
-@app.route('/get_transactions/<user_address>', methods=["GET"])
+@app.route('/getTransactions/<user_address>', methods=["GET"])
 def get_transactions(user_address):
     if not w3.is_address(user_address): 
         return jsonify({"error": "Address Not Found"}), 404 
