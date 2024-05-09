@@ -15,7 +15,7 @@ else:
     app.logger.info(w3.is_connected())
 
 
-API_KEY = "5J1BUQYA8FUVEZFUF5XH4CQ9R1RCVX6J1Z"
+API_KEY = ""
     
 # Define a route for the API endpoint
 # Endpoint to create a new guide
